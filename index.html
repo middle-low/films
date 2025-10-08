@@ -704,6 +704,12 @@
                 width: 95%;
             }
         }
+
+.hidden-section {
+    display: none !important;
+}
+
+		
     </style>
 </head>
 <body>
@@ -1101,8 +1107,75 @@
     });
 </script>
 
+<script>
+// Sections
+const sections = {
+    home: document.getElementById('home'),
+    featured: document.getElementById('featured'),
+    catalog: document.getElementById('catalog'),
+    contact: document.getElementById('contact')
+};
 
+// Semua section kecuali home sembunyikan di awal
+for (let key in sections) {
+    if(key !== 'home') sections[key].classList.add('hidden-section');
+}
+
+// Fungsi tampilkan section
+function showSection(sectionId) {
+    // Sembunyikan semua section
+    for (let key in sections) {
+        sections[key].classList.add('hidden-section');
+    }
+
+    // Tampilkan section yang dipilih
+    sections[sectionId].classList.remove('hidden-section');
+
+    // Scroll ke top
+    window.scrollTo(0, 0);
+
+    // Jika catalog, load film dan aktifkan
+    if(sectionId === 'catalog') {
+        loadAllFilms();
+        sections.catalog.classList.add('active');
+    }
+}
+
+// Event listener untuk menu
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        showSection(targetId);
+    });
+});
+
+// Logo klik → home
+logo.addEventListener('click', () => {
+    showSection('home');
+});
+
+// View Featured button
+viewFeaturedBtn.addEventListener('click', () => {
+    showSection('featured');
+});
+
+// View All button
+viewAllBtn.addEventListener('click', () => {
+    showSection('catalog');
+});
+
+// Scroll ke top saat refresh (desktop & mobile termasuk Safari iPhone)
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 50);
+});
+</script>
+
+	
 </body></html>
+
 
 
 
