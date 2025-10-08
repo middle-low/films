@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDDLE LOW - Your Portal to Dark Imagination</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary-black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2a2a2a;
+            --light-gray: #3a3a3a;
+            --muted-red: #8b0000;
+            --deep-red: #4a0000;
+            --accent-purple: #2a0845;
+            --text-light: #e0e0e0;
+            --text-dim: #a0a0a0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--primary-black);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated background elements */
+        .smoke-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .smoke {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('https://picsum.photos/seed/smoke/1920/1080.jpg') center/cover no-repeat;
+            opacity: 0.05;
+            filter: blur(40px);
+            animation: drift 60s infinite linear;
+        }
+        
+        .smoke:nth-child(2) {
+            animation-duration: 80s;
+            animation-direction: reverse;
+            opacity: 0.03;
+        }
+        
+        .smoke:nth-child(3) {
+            animation-duration: 100s;
+            opacity: 0.04;
+        }
+        
+        @keyframes drift {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9), transparent);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+        }
+        
+        .logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            color: var(--muted-red);
+            text-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            color: var(--text-light);
+            text-shadow: 0 0 15px rgba(139, 0, 0, 0.8);
+        }
+        
+        nav {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--muted-red);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--text-light);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.vikatan.com/vikatan/2023-01/bf700cee-31be-4a73-a3c3-720cc40e82ac/63ca28a4e4fe0.jpg?rect=627,0,3145,2359&auto=format,compress&w=1200') center/cover no-repeat;
+            filter: brightness(0.3) contrast(1.2);
+            z-index: -2;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, rgba(10, 10, 10, 0.8) 100%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+            animation: flicker 5s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+            }
+            20%, 22%, 24%, 55% {
+                text-shadow: 0 0 30px rgba(139, 0, 0, 0.8);
+            }
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--deep-red), var(--muted-red));
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.5);
+        }
+        
+        /* Featured Films Section */
+        .featured-section {
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            color: var(--text-light);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--muted-red);
+        }
+        
+        .films-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .film-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            background: var(--dark-gray);
+        }
+        
+        .film-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 0, 0, 0.3);
+        }
+        
+        .film-thumbnail {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .film-card:hover .film-thumbnail {
+            transform: scale(1.05);
+            filter: brightness(0.7);
+        }
+        
+        .film-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+        
+        .film-card:hover .film-overlay {
+            opacity: 1;
+        }
+        
+        .film-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        .film-date {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(139, 0, 0, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .film-card:hover .play-button {
+            opacity: 1;
+        }
+        
+        .play-button i {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-left: 5px;
+        }
+        
+        .view-all-container {
+            text-align: center;
+        }
+        
+        .view-all-button {
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--muted-red);
+            border: 2px solid var(--muted-red);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .view-all-button:hover {
+            background: var(--muted-red);
+            color: var(--text-light);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* Full Catalog Section */
+        .catalog-section {
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: none;
+        }
+        
+        .catalog-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .catalog-film-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            background: var(--dark-gray);
+        }
+        
+        .catalog-film-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
+        }
+        
+        .catalog-film-thumbnail {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .catalog-film-card:hover .catalog-film-thumbnail {
+            transform: scale(1.05);
+            filter: brightness(0.7);
+        }
+        
+        .catalog-film-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 15px;
+        }
+        
+        .catalog-film-card:hover .catalog-film-overlay {
+            opacity: 1;
+        }
+        
+        .catalog-film-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+        
+        .catalog-film-date {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            position: relative;
+            width: 80%;
+            max-width: 900px;
+            background: var(--dark-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+        }
+        
+        .modal-header {
+            padding: 20px;
+            background: var(--medium-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--muted-red);
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-error {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-dim);
+        }
+        
+        .video-error i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--muted-red);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 40px 30px;
+            background: var(--dark-gray);
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            color: var(--muted-red);
+            margin-bottom: 20px;
+        }
+        
+        .footer-note {
+            color: var(--text-dim);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.9rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--medium-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--muted-red);
+            color: var(--text-light);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            color: var(--muted-red);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            
+            nav {
+                right: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .featured-section, .catalog-section {
+                padding: 60px 20px;
+            }
+            
+            .films-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .catalog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-text">ENTERING DARKNESS...</div>
+    </div>
+    
+    <!-- Animated Background -->
+    <div class="smoke-container">
+        <div class="smoke"></div>
+        <div class="smoke"></div>
+        <div class="smoke"></div>
+    </div>
+    
+    <!-- Header -->
+    <header id="header">
+        <div class="logo" id="logo">MIDDLE LOW</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#featured">Featured</a></li>
+                <li><a href="#catalog">Catalog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>MIDDLE LOW – ENTER, DON'T LEAVE!</h1>
+            <p>Explore our curated catalog of horror and imaginative films</p>
+            <button class="cta-button" id="view-featured-btn">View Featured Films</button>
+        </div>
+    </section>
+    
+    <!-- Featured Films Section -->
+    <section class="featured-section" id="featured">
+        <h2 class="section-title">Featured Films</h2>
+        <div class="films-grid" id="featured-films">
+            <!-- Featured films will be dynamically loaded here -->
+        </div>
+        <div class="view-all-container">
+            <button class="view-all-button" id="view-all-btn">View All Films</button>
+        </div>
+    </section>
+    
+    <!-- Full Catalog Section -->
+    <section class="catalog-section" id="catalog">
+        <h2 class="section-title">Full Film Catalog</h2>
+        <div class="catalog-grid" id="catalog-films">
+            <!-- All films will be dynamically loaded here -->
+        </div>
+    </section>
+    
+    <!-- Video Modal -->
+    <div class="modal" id="video-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Film Title</h3>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="video-container" id="video-container">
+                    <!-- Video will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-logo">MIDDLE LOW</div>
+        <p class="footer-note">Please note: Shadows are watching!</p>
+        <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p class="copyright">© 2025 MIDDLE LOW. All rights reserved.</p>
+    </footer>
+    
+    <script>
+	
+	// Scroll ke top ketika halaman dimuat ulang
+		window.addEventListener('beforeunload', () => {
+		window.scrollTo(0, 0);
+		});
+
+	
+        // Film data with YouTube links
+        const filmsData = [
+            {
+                id: 1,
+                title: "Keno Molo 1",
+                thumbnail: "https://i.ytimg.com/vi/FpzHFed8Vtk/maxresdefault.jpg",
+                videoUrl: "https://www.youtube-nocookie.com/embed/FpzHFed8Vtk?rel=0&modestbranding=1&showinfo=0",
+                dateModified: new Date("2019-12-25"),
+                description: "A chilling tale of shadows and secrets."
+            },
+            {
+                id: 2,
+                title: "Official Trailer - Keno Molo 2",
+                thumbnail: "https://img.youtube.com/vi/UWiakkD9B8I/maxresdefault.jpg",
+                videoUrl: "https://www.youtube-nocookie.com/embed/UWiakkD9B8I?rel=0&modestbranding=1&showinfo=0",
+                dateModified: new Date("2021-01-13"),
+                description: "When darkness falls, nightmares awaken."
+            },
+            {
+                id: 3,
+                title: "Keno Molo 2",
+                thumbnail: "https://img.youtube.com/vi/ZCT_do4rdAw/maxresdefault.jpg",
+                videoUrl: "https://www.youtube-nocookie.com/embed/ZCT_do4rdAw?rel=0&modestbranding=1&showinfo=0&start=101",
+                dateModified: new Date("2021-02-28"),
+                description: "Some sounds should never be heard."
+            },
+            {
+                id: 4,
+                title: "Official Trailer - Keno Molo 3",
+                thumbnail: "https://img.youtube.com/vi/DCH-k4JYib8/maxresdefault.jpg",
+                videoUrl: "https://www.youtube-nocookie.com/embed/DCH-k4JYib8?rel=0&modestbranding=1&showinfo=0",
+                dateModified: new Date("2022-05-22"),
+                description: "Not all visitors are invited."
+            },
+            {
+                id: 5,
+                title: "Keno Molo 3",
+                thumbnail: "https://img.youtube.com/vi/ooJ73E-L4ws/maxresdefault.jpg",
+				videoUrl: "https://www.youtube-nocookie.com/embed/ooJ73E-L4ws?rel=0&modestbranding=1&showinfo=0&start=300",
+                dateModified: new Date("2022-05-27"),
+                description: "Where light ends, terror begins."
+            },
+            {
+                id: 6,
+                title: "Di Balik Layar Keno Molo 2 #Part1",
+                thumbnail: "https://img.youtube.com/vi/hwb_6eDCdlU/maxresdefault.jpg",
+                videoUrl: "https://www.youtube-nocookie.com/embed/hwb_6eDCdlU?rel=0&modestbranding=1&showinfo=0&start=303",
+                dateModified: new Date("2022-06-09"),
+                description: "The dawn brings no salvation."
+            },
+            {
+                id: 7,
+                title: "Di Balik Layar Keno Molo 2 #Part2",
+                thumbnail: "https://img.youtube.com/vi/7UFGj6jnMTM/maxresdefault.jpg",
+                videoUrl: "https://www.youtube-nocookie.com/embed/7UFGj6jnMTM?rel=0&modestbranding=1&showinfo=0",
+                dateModified: new Date("2022-06-10"),
+                description: "The loudest terror makes no sound."
+            },
+            {
+                id: 8,
+                title: "Diculik Wewe Gombel",
+                thumbnail: "https://img.youtube.com/vi/CSDBvqCaoiA/maxresdefault.jpg",
+                videoUrl: "https://www.youtube-nocookie.com/embed/CSDBvqCaoiA?rel=0&modestbranding=1&showinfo=0&start=1135",
+                dateModified: new Date("2022-06-30"),
+                description: "What lurks beneath the surface?"
+            },
+            {
+                id: 9,
+                title: "Pesugihan Toko Sembako",
+                thumbnail: "https://img.youtube.com/vi/um7UfyvgWIc/maxresdefault.jpg",
+                videoUrl: "https://www.youtube-nocookie.com/embed/um7UfyvgWIc?rel=0&modestbranding=1&showinfo=0&start=2",
+                dateModified: new Date("2022-07-07"),
+                description: "Some doors should remain closed."
+            },
+            {
+                id: 10,
+                title: "Hantu di Sekitar Kita",
+                thumbnail: "https://img.youtube.com/vi/wrjA0UHMvaY/maxresdefault.jpg",
+                videoUrl: "https://www.youtube-nocookie.com/embed/wrjA0UHMvaY?rel=0&modestbranding=1&showinfo=0&start=51",
+                dateModified: new Date("2022-08-24"),
+                description: "When dreams become reality's prison."
+            }
+        ];
+        
+        // DOM elements
+        const loading = document.getElementById('loading');
+        const header = document.getElementById('header');
+        const logo = document.getElementById('logo');
+        const viewFeaturedBtn = document.getElementById('view-featured-btn');
+        const viewAllBtn = document.getElementById('view-all-btn');
+        const featuredFilms = document.getElementById('featured-films');
+        const catalogFilms = document.getElementById('catalog-films');
+        const catalogSection = document.getElementById('catalog');
+        const videoModal = document.getElementById('video-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalClose = document.getElementById('modal-close');
+        const videoContainer = document.getElementById('video-container');
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hide loading screen
+            setTimeout(() => {
+                loading.classList.add('hidden');
+            }, 1500);
+            
+            // Load featured films
+            loadFeaturedFilms();
+            
+            // Set up event listeners
+            setupEventListeners();
+        });
+        
+        // Load featured films (films 1, 3, and 5)
+        function loadFeaturedFilms() {
+            // Get the specific films with IDs 1, 3, and 5
+            const featuredFilmIds = [1, 3, 5];
+            const selectedFilms = filmsData.filter(film => featuredFilmIds.includes(film.id));
+            
+            // Clear existing content
+            featuredFilms.innerHTML = '';
+            
+            // Create film cards
+            selectedFilms.forEach(film => {
+                const filmCard = createFilmCard(film, 'featured');
+                featuredFilms.appendChild(filmCard);
+            });
+        }
+        
+        // Load all films for catalog (oldest to newest)
+        function loadAllFilms() {
+            // Sort films by date modified (oldest first)
+            const sortedFilms = [...filmsData].sort((a, b) => a.dateModified - b.dateModified);
+            
+            // Clear existing content
+            catalogFilms.innerHTML = '';
+            
+            // Create film cards
+            sortedFilms.forEach(film => {
+                const filmCard = createFilmCard(film, 'catalog');
+                catalogFilms.appendChild(filmCard);
+            });
+        }
+        
+        // Create a film card element
+        function createFilmCard(film, type) {
+            const card = document.createElement('div');
+            card.className = type === 'featured' ? 'film-card' : 'catalog-film-card';
+            card.dataset.filmId = film.id;
+            
+            const thumbnail = document.createElement('img');
+            thumbnail.className = type === 'featured' ? 'film-thumbnail' : 'catalog-film-thumbnail';
+            thumbnail.src = film.thumbnail;
+            thumbnail.alt = film.title;
+            thumbnail.loading = 'lazy';
+            
+            const overlay = document.createElement('div');
+            overlay.className = type === 'featured' ? 'film-overlay' : 'catalog-film-overlay';
+            
+            const title = document.createElement('h3');
+            title.className = type === 'featured' ? 'film-title' : 'catalog-film-title';
+            title.textContent = film.title;
+            
+            const date = document.createElement('p');
+            date.className = type === 'featured' ? 'film-date' : 'catalog-film-date';
+            date.textContent = formatDate(film.dateModified);
+            
+            const playButton = document.createElement('div');
+            playButton.className = 'play-button';
+            playButton.innerHTML = '<i class="fas fa-play"></i>';
+            
+            overlay.appendChild(title);
+            overlay.appendChild(date);
+            card.appendChild(thumbnail);
+            card.appendChild(overlay);
+            
+            if (type === 'featured') {
+                card.appendChild(playButton);
+            }
+            
+            // Add click event to open video
+            card.addEventListener('click', () => openVideoModal(film));
+            
+            return card;
+        }
+        
+        // Format date
+        function formatDate(date) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+        
+        // Open video modal
+        function openVideoModal(film) {
+            modalTitle.textContent = film.title;
+            
+            // Create iframe for YouTube video
+            const iframe = document.createElement('iframe');
+            iframe.src = film.videoUrl;
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            
+            // Handle video loading errors
+            iframe.onerror = () => {
+                videoContainer.innerHTML = `
+                    <div class="video-error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Sorry, this video is currently unavailable.</p>
+                        <p>It may have been removed or the link is broken.</p>
+                    </div>
+                `;
+            };
+            
+            // Clear and set video container
+            videoContainer.innerHTML = '';
+            videoContainer.appendChild(iframe);
+            
+            // Show modal
+            videoModal.classList.add('active');
+        }
+        
+        // Close video modal
+        function closeVideoModal() {
+            videoModal.classList.remove('active');
+            // Stop video playback
+            videoContainer.innerHTML = '';
+        }
+        
+        // Set up event listeners
+        function setupEventListeners() {
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Logo click - scroll to top
+            logo.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // View Featured button
+            viewFeaturedBtn.addEventListener('click', () => {
+                document.getElementById('featured').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // View All button
+            viewAllBtn.addEventListener('click', () => {
+                loadAllFilms();
+                catalogSection.classList.add('active');
+                catalogSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Modal close button
+            modalClose.addEventListener('click', closeVideoModal);
+            
+            // Close modal when clicking outside
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    closeVideoModal();
+                }
+            });
+            
+            // Navigation links
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetId === 'catalog') {
+                        loadAllFilms();
+                        catalogSection.classList.add('active');
+                    }
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                    closeVideoModal();
+                }
+            });
+        }
+    </script>
+
+</body></html>
