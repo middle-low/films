@@ -1093,18 +1093,17 @@
     </script>
 
 	<script>
-    // Scroll ke top ketika halaman dimuat (desktop & mobile)
-    window.addEventListener('DOMContentLoaded', () => {
-        window.scrollTo(0, 0);
-    });
-
-    // Opsional: scroll ke top lagi setelah semua resource selesai load
     window.addEventListener('load', () => {
-        window.scrollTo(0, 0);
+        // delay sedikit supaya Safari iOS sudah menempatkan scroll
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 50); // bisa juga 100ms jika 50ms belum cukup
     });
-	</script>
+</script>
+
 
 </body></html>
+
 
 
 
