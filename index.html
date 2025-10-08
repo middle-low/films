@@ -1093,14 +1093,19 @@
     </script>
 
 	<script>
-    // Scroll ke top ketika halaman dimuat ulang
-    window.addEventListener('beforeunload', () => {
+    // Scroll ke top ketika halaman dimuat (desktop & mobile)
+    window.addEventListener('DOMContentLoaded', () => {
+        window.scrollTo(0, 0);
+    });
+
+    // Opsional: scroll ke top lagi setelah semua resource selesai load
+    window.addEventListener('load', () => {
         window.scrollTo(0, 0);
     });
 	</script>
 
-
 </body></html>
+
 
 
 
