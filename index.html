@@ -705,6 +705,13 @@
             }
         }
 
+		/* Section visibility control */
+section {
+    display: none; /* semua section default disembunyikan */
+}
+section.active {
+    display: block; /* section yang aktif tampil */
+}
 		
     </style>
 </head>
@@ -1101,11 +1108,45 @@
             window.scrollTo(0, 0);
         }, 50); // bisa juga 100ms jika 50ms belum cukup
     });
+
+// Fungsi untuk tampilkan section tertentu
+function showSection(sectionId) {
+    document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('active');
+    });
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // scroll ke atas
+    }
+}
+
+// Update event listener untuk menu navigasi
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+
+        if (targetId === 'catalog') {
+            loadAllFilms();
+        }
+
+        showSection(targetId);
+    });
+});
+
+// Tampilkan home saat pertama kali load
+document.addEventListener('DOMContentLoaded', () => {
+    showSection('home');
+});
+
+		
 </script>
 
 
 	
 </body></html>
+
 
 
 
