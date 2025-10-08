@@ -1092,8 +1092,16 @@
         }
     </script>
 
+	<script>
+    // Scroll ke top ketika halaman dimuat ulang
+    window.addEventListener('beforeunload', () => {
+        window.scrollTo(0, 0);
+    });
+	</script>
+
 
 </body></html>
+
 
 
 
